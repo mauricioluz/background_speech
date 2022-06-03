@@ -45,7 +45,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
         textToSpeech = TextToSpeech(context,
                 TextToSpeech.OnInitListener { status ->
                     if (status == TextToSpeech.SUCCESS) {
-                        val ttsLang = textToSpeech?.setLanguage(Locale.BR)
+                        val ttsLang = textToSpeech?.setLanguage(Locale.getDefault())
 
                         if (ttsLang == TextToSpeech.LANG_MISSING_DATA || ttsLang == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Log.i(TAG, "The Language is not supported!")
