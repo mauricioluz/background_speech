@@ -131,7 +131,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
     fun resumeSpeechService() {
         Log.i(TAG, "Listening to voice commands..")
         isListening = true
-        context.adjustSound(AudioManager.ADJUST_MUTE, forceAdjust = true)
+        // context.adjustSound(AudioManager.ADJUST_MUTE, forceAdjust = true)
         SpeechListenService.startListening()
     }
 
@@ -143,7 +143,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
         if (now) {
             resetConfirmation()
             Log.i(TAG, "Confirmation cancelled.")
-            context.adjustSound(AudioManager.ADJUST_MUTE)
+            // context.adjustSound(AudioManager.ADJUST_MUTE)
             SpeechListenService.startListening()
         } else {
             if (confirmationProvided) {
