@@ -80,17 +80,17 @@ public class Speech {
                 return;
             }
 
-            mDelayedStopListening.start(new DelayedOperation.Operation() {
-                @Override
-                public void onDelayedOperation() {
-                    //returnPartialResultsAndRecreateSpeechRecognizer();
-                }
+            // mDelayedStopListening.start(new DelayedOperation.Operation() {
+            //     @Override
+            //     public void onDelayedOperation() {
+            //         returnPartialResultsAndRecreateSpeechRecognizer();
+            //     }
 
-                @Override
-                public boolean shouldExecuteDelayedOperation() {
-                    return true;
-                }
-            });
+            //     @Override
+            //     public boolean shouldExecuteDelayedOperation() {
+            //         return true;
+            //     }
+            // });
         }
 
         @Override
@@ -219,7 +219,7 @@ public class Speech {
 
             mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(context);
             mSpeechRecognizer.setRecognitionListener(mListener);
-            initDelayedStopListening(context);
+            // initDelayedStopListening(context);
 
         } else {
             mSpeechRecognizer = null;
