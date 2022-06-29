@@ -149,7 +149,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
             if (confirmationProvided) {
                 handler.postDelayed({
                     confirmationInProgress = false
-                }, 3000)
+                }, 500)
             }
         }
     }
@@ -238,7 +238,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
                         }
                     }
                     voiceReplyProvided = true
-                }, 4000)
+                }, 500)
 
             }
         }
@@ -255,7 +255,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
             handler.postDelayed({
                 resetConfirmation()
                 Log.i(TAG, "sendConfirmation: Confirmation completed.")
-            }, 3000)
+            }, 500)
         }
     }
 

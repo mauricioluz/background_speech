@@ -42,8 +42,8 @@ public class Speech {
 
     private final Map<String, TextToSpeechCallback> mTtsCallbacks = new HashMap<>();
     private Locale mLocale = Locale.getDefault();
-    private long mStopListeningDelayInMs = 1000;
-    private long mTransitionMinimumDelay = 1200;
+    private long mStopListeningDelayInMs = 500;
+    private long mTransitionMinimumDelay = 600;
     private long mLastActionTimestamp;
     private List<String> mLastPartialResults = null;
 

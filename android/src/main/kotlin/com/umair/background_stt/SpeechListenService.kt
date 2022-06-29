@@ -139,7 +139,7 @@ class SpeechListenService : Service(), stopDueToDelay {
             Speech.getInstance().setListener(this)
             if (Speech.getInstance().isListening) {
                 Speech.getInstance().stopListening()
-                muteSounds()
+                // muteSounds()
             } else {
                 System.setProperty("rx.unsafe-disable", "True")
                 try {
@@ -149,7 +149,7 @@ class SpeechListenService : Service(), stopDueToDelay {
                 } catch (exc: GoogleVoiceTypingDisabledException) {
                     Log.e(TAG, "${exc.message}")
                 }
-                muteSounds()
+                // muteSounds()
             }
         }
         return START_STICKY
@@ -176,7 +176,7 @@ class SpeechListenService : Service(), stopDueToDelay {
                     Log.e(TAG, "${exc.message}")
                 }
                 if (!feedBackProvider?.isConfirmationInProgress()!!) {
-                    muteSounds()
+                    // muteSounds()
                 }
             }
         }
