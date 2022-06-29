@@ -42,8 +42,8 @@ public class Speech {
 
     private final Map<String, TextToSpeechCallback> mTtsCallbacks = new HashMap<>();
     private Locale mLocale = Locale.getDefault();
-    private long mStopListeningDelayInMs = 500;
-    private long mTransitionMinimumDelay = 600;
+    private long mStopListeningDelayInMs = 800;
+    private long mTransitionMinimumDelay = 800;
     private long mLastActionTimestamp;
     private List<String> mLastPartialResults = null;
 
@@ -113,7 +113,7 @@ public class Speech {
                 return;
             }
 
-            mDelayedStopListening.resetTimer();
+            //mDelayedStopListening.resetTimer();
 
             final List<String> partialResults = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             final List<String> unstableData = bundle.getStringArrayList("android.speech.extra.UNSTABLE_TEXT");
@@ -142,7 +142,7 @@ public class Speech {
                 return;
             }
 
-            mDelayedStopListening.cancel();
+            //mDelayedStopListening.cancel();
 
             final List<String> results = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
