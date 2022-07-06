@@ -113,10 +113,10 @@ fun Context.adjustSound(adjust: Int, forceAdjust: Boolean = false) {
 
 private fun Context.adjustSoundValues(adjust: Int) {
     (getSystemService(android.content.Context.AUDIO_SERVICE) as AudioManager).let { audioManager ->
-        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_NOTIFICATION, adjust, 0)
-        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_ALARM, adjust, 0)
-        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC, adjust, 0)
-        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_RING, adjust, 0)
-        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_SYSTEM, adjust, 0)
+        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_MUTE, 0)
+        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_ALARM, AudioManager.ADJUST_MUTE, 0)
+        //audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, 0)
+        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0)
+        audioManager.adjustStreamVolume(android.media.AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_MUTE, 0)
     }
 }

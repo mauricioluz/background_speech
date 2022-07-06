@@ -45,9 +45,9 @@ public class DelayedOperation {
 
         Logger.debug(LOG_TAG, "starting delayed operation with tag: " + mTag);
         mOperation = operation;
-        cancel();
+        //cancel();
         started = true;
-        resetTimer();
+        //resetTimer();
     }
 
     public void resetTimer() {

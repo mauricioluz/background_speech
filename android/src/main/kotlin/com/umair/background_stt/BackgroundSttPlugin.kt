@@ -199,7 +199,7 @@ class BackgroundSttPlugin : FlutterPlugin, ActivityAware, PluginRegistry.Request
 
         @JvmStatic
         private fun initSpeechService(context: Context) {
-            Speech.init(context, context.packageName, 2000L, 1000L)
+            Speech.init(context, context.packageName, 1L, 1L)
             Logger.setLogLevel(Logger.LogLevel.DEBUG)
             try {
                 context.startService(Intent(context, SpeechListenService::class.java))

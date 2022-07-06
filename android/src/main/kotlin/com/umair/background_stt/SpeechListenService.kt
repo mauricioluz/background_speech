@@ -63,7 +63,7 @@ class SpeechListenService : Service(), stopDueToDelay {
                 feedBackProvider?.resumeSpeechService()
             } else {
                 Speech.getInstance().stopListening()
-                context?.adjustSound(AudioManager.ADJUST_RAISE)
+                // context?.adjustSound(AudioManager.ADJUST_RAISE)
             }
         }
 

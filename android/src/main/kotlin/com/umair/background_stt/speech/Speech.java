@@ -42,8 +42,8 @@ public class Speech {
 
     private final Map<String, TextToSpeechCallback> mTtsCallbacks = new HashMap<>();
     private Locale mLocale = Locale.getDefault();
-    private long mStopListeningDelayInMs = 800;
-    private long mTransitionMinimumDelay = 800;
+    private long mStopListeningDelayInMs = 10000;
+    private long mTransitionMinimumDelay = 12000;
     private long mLastActionTimestamp;
     private List<String> mLastPartialResults = null;
 
@@ -80,17 +80,17 @@ public class Speech {
                 return;
             }
 
-            // mDelayedStopListening.start(new DelayedOperation.Operation() {
-            //     @Override
-            //     public void onDelayedOperation() {
-            //         returnPartialResultsAndRecreateSpeechRecognizer();
-            //     }
+            mDelayedStopListening.start(new DelayedOperation.Operation() {
+                @Override
+                public void onDelayedOperation() {
+                    //returnPartialResultsAndRecreateSpeechRecognizer();
+                }
 
-            //     @Override
-            //     public boolean shouldExecuteDelayedOperation() {
-            //         return true;
-            //     }
-            // });
+                @Override
+                public boolean shouldExecuteDelayedOperation() {
+                    return true;
+                }
+            });
         }
 
         @Override
@@ -113,7 +113,7 @@ public class Speech {
                 return;
             }
 
-            //mDelayedStopListening.resetTimer();
+            mDelayedStopListening.resetTimer();
 
             final List<String> partialResults = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             final List<String> unstableData = bundle.getStringArrayList("android.speech.extra.UNSTABLE_TEXT");
@@ -142,7 +142,7 @@ public class Speech {
                 return;
             }
 
-            //mDelayedStopListening.cancel();
+            mDelayedStopListening.cancel();
 
             final List<String> results = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
@@ -219,7 +219,7 @@ public class Speech {
 
             mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(context);
             mSpeechRecognizer.setRecognitionListener(mListener);
-            // initDelayedStopListening(context);
+            initDelayedStopListening(context);
 
         } else {
             mSpeechRecognizer = null;
@@ -238,6 +238,7 @@ public class Speech {
         if (mListenerDelay != null) {
             mListenerDelay.onSpecifiedCommandPronounced("1");
         }
+
         mDelayedStopListening = new DelayedOperation(context, "delayStopListening", mStopListeningDelayInMs);
     }
 
@@ -331,9 +332,9 @@ public class Speech {
                 .putExtra(RecognizerIntent.EXTRA_LANGUAGE, mLocale.getLanguage())
                 .putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 1000);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 1000);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 1000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 10000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 10000);
 
         if (mCallingPackage != null && !mCallingPackage.isEmpty()) {
             intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, mCallingPackage);
