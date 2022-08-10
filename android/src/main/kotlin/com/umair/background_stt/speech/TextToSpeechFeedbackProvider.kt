@@ -125,7 +125,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
                 }
                 resumeSpeechService()
             }
-        }, 300)
+        }, 1000)
     }
 
     fun resumeSpeechService() {
@@ -149,7 +149,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
             if (confirmationProvided) {
                 handler.postDelayed({
                     confirmationInProgress = false
-                }, 500)
+                }, 1000)
             }
         }
     }
@@ -238,7 +238,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
                         }
                     }
                     voiceReplyProvided = true
-                }, 500)
+                }, 1000)
 
             }
         }
@@ -255,7 +255,7 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
             handler.postDelayed({
                 resetConfirmation()
                 Log.i(TAG, "sendConfirmation: Confirmation completed.")
-            }, 500)
+            }, 1000)
         }
     }
 
@@ -272,6 +272,6 @@ class TextToSpeechFeedbackProvider constructor(val context: Context) {
     }
 
     private fun playSound() {
-        soundPool.play(soundId, 1.0f, 1.0f, 1, 0, 1.0f)
+        // soundPool.play(soundId, 1.0f, 1.0f, 1, 0, 1.0f)
     }
 }

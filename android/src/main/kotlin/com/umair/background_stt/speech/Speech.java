@@ -10,7 +10,6 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
-
 import com.umair.background_stt.SpeechListenService;
 
 import java.util.ArrayList;
@@ -42,8 +41,8 @@ public class Speech {
 
     private final Map<String, TextToSpeechCallback> mTtsCallbacks = new HashMap<>();
     private Locale mLocale = Locale.getDefault();
-    private long mStopListeningDelayInMs = 10000;
-    private long mTransitionMinimumDelay = 12000;
+    private long mStopListeningDelayInMs = 1000;
+    private long mTransitionMinimumDelay = 1200;
     private long mLastActionTimestamp;
     private List<String> mLastPartialResults = null;
 
@@ -332,9 +331,9 @@ public class Speech {
                 .putExtra(RecognizerIntent.EXTRA_LANGUAGE, mLocale.getLanguage())
                 .putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 10000);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2000);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 10000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 1000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 1000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 5000);
 
         if (mCallingPackage != null && !mCallingPackage.isEmpty()) {
             intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, mCallingPackage);
@@ -402,8 +401,10 @@ public class Speech {
             out.append(partial).append(" ");
         }
 
-        if (mUnstableData != null && !mUnstableData.isEmpty())
+        if (mUnstableData != null && !mUnstableData.isEmpty()) {
             out.append(mUnstableData);
+            Logger.info(Speech.class.getSimpleName(), mUnstableData);
+        }
 
         return out.toString().trim();
     }

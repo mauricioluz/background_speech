@@ -120,12 +120,14 @@ class BackgroundStt {
       if (event.toString().contains("isPartial") &&
           !event.toString().contains("confirmationIntent")) {
         Map result = jsonDecode(event);
-        _speechResultSaved = SpeechResult.fromJson(result as Map<String, dynamic>);
+        _speechResultSaved =
+            SpeechResult.fromJson(result as Map<String, dynamic>);
         _speechListenerController.add(_speechResultSaved);
       } else if (!event.toString().contains("isPartial") &&
           event.toString().contains("confirmationIntent")) {
         Map result = jsonDecode(event);
-        _confirmationResultSaved = ConfirmationResult.fromJson(result as Map<String, dynamic>);
+        _confirmationResultSaved =
+            ConfirmationResult.fromJson(result as Map<String, dynamic>);
         if (_confirmationResultSaved.confirmationIntent != null &&
             _confirmationResultSaved.confirmationIntent!.isNotEmpty) {
           _confirmationListenerController.add(_confirmationResultSaved);
