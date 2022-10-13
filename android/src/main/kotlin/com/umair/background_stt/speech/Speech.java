@@ -423,6 +423,10 @@ public class Speech {
         initSpeechRecognizer(mContext);
     }
 
+    public void clearResults() {
+        mPartialData.clear();
+    }
+
     /**
      * Check if voice recognition is currently active.
      *

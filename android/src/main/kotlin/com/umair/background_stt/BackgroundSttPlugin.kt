@@ -135,6 +135,10 @@ class BackgroundSttPlugin : FlutterPlugin, ActivityAware, PluginRegistry.Request
                             SpeechListenService.setSpeaker(pitch, rate)
                         }
                     }
+                    "clearResults" -> {
+                        SpeechListenService.clearResults()
+                        result.success("Results cleared.")
+                    }
                     else -> result.notImplemented()
                 }
             }

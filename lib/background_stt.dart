@@ -108,6 +108,12 @@ class BackgroundStt {
     return result;
   }
 
+  Future<String?> clearResults() async {
+    final String? result = await _channel.invokeMethod('clearResults');
+    print('[$_tag] clearResults: $result');
+    return result;
+  }
+
   Future<String?> get stopSpeechListenService async {
     _stopSpeechListener();
     final String? result = await _channel.invokeMethod('stopService');

@@ -118,6 +118,10 @@ class SpeechListenService : Service(), stopDueToDelay {
                 BackgroundSttPlugin.eventSink?.success(SpeechResult(result, isPartial).toString())
             }
         }
+
+        fun clearResults() {
+            Speech.getInstance().clearResults()
+        }
     }
 
     override fun onCreate() {
